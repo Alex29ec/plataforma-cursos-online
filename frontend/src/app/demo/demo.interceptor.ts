@@ -47,7 +47,8 @@ interface Bd {
   sesion: boolean;
 }
 
-const CLAVE = 'demo.bd.v2';
+// Clave propia por proyecto: varias demos en el mismo dominio (github.io) comparten localStorage.
+const CLAVE = 'aula-online.demo.bd';
 const ALFABETO = '23456789ABCDEFGHJKMNPQRSTUVWXYZ';
 const MAX_IMAGEN = 1024 * 1024; // el navegador guarda poco: 1 MB en la demo (5 MB en el servidor real)
 export const USUARIO_DEMO = 'admin';
