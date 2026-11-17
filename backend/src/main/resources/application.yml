@@ -1,0 +1,37 @@
+# Configuracion base: segura por defecto (pagos reales con Stripe, sin base de datos local).
+# Para desarrollo usa el perfil "local" (./mvnw spring-boot:run ya lo activa).
+spring:
+  application:
+    name: plataforma
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+server:
+  servlet:
+    session:
+      timeout: 8h
+      cookie:
+        http-only: true
+        same-site: lax
+
+app:
+  uploads-dir: ${APP_UPLOADS_DIR:./uploads}
+  frontend-url: http://localhost:4200
+  pagos:
+    proveedor: stripe
+  diplomas:
+    emisor: automatico
+  stripe:
+    secret-key: ${STRIPE_SECRET_KEY:}
+    webhook-secret: ${STRIPE_WEBHOOK_SECRET:}
+  admin:
+    usuario: ${ADMIN_USUARIO:}
+    password: ${ADMIN_PASSWORD:}

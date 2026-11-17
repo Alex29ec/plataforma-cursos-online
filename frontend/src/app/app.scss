@@ -1,0 +1,184 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
+
+.cabecera {
+  background: var(--marino);
+  padding: 14px 0;
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+
+      &:hover {
+        color: var(--arena);
+      }
+    }
+  }
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.punto {
+  color: var(--arena);
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--turquesa);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.pie {
+  background: var(--marino);
+  color: #d5dbe4;
+  padding: 40px 0 20px;
+  font-size: 0.92rem;
+
+  p {
+    margin: 0 0 6px;
+  }
+
+  h2 {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  a {
+    color: #d5dbe4;
+    display: block;
+    margin-bottom: 6px;
+
+    &:hover {
+      color: var(--arena);
+    }
+  }
+}
+
+.columnas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.marca-pie {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.legal {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+  font-size: 0.85rem;
+}
+
+
+.redes {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+
+  a {
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    margin: 0;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.1);
+    color: #fff;
+
+    &:hover {
+      background: var(--arena);
+      color: var(--marino);
+    }
+  }
+}
+
+/* Botón flotante de WhatsApp, como en la web actual. */
+.whatsapp {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.25);
+
+  &:hover {
+    background: #1ebe5b;
+  }
+}
+
+.aviso-demo {
+  margin: 0;
+  padding: 8px 16px;
+  background: var(--arena);
+  color: var(--marino);
+  font-size: 0.88rem;
+  text-align: center;
+
+  a {
+    color: var(--marino);
+    font-weight: 700;
+  }
+}
+
+.aviso-demo__btn {
+  margin-left: 8px;
+  padding: 3px 12px;
+  border: 1px solid var(--marino);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--marino);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--marino);
+    color: #fff;
+  }
+}

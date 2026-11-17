@@ -1,0 +1,81 @@
+.preguntas {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  li {
+    padding: 18px 20px;
+    border-left: 4px solid var(--color-borde);
+
+    &.respondida {
+      border-left-color: var(--color-primario);
+    }
+  }
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.num {
+  color: var(--color-primario);
+}
+
+.opcion {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-primario-claro);
+  }
+
+  input {
+    margin-top: 4px;
+    accent-color: var(--color-primario);
+    width: 18px;
+    height: 18px;
+    flex: none;
+  }
+}
+
+.barra {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-superficie);
+  border-top: 1px solid var(--color-borde);
+  box-shadow: 0 -4px 16px rgb(0 0 0 / 0.06);
+  padding: 10px 0;
+  z-index: 10;
+}
+
+.barra-interior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.confirmar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}

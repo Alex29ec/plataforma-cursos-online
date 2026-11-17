@@ -1,0 +1,60 @@
+<div class="contenedor pagina">
+  <h1>Examen</h1>
+
+  @if (error(); as e) {
+    <div class="aviso error">
+      {{ e }}
+      <div class="acciones"><button class="boton" type="button" (click)="empezar()">Reintentar</button></div>
+    </div>
+  }
+
+  @if (intento(); as i) {
+    <p class="suave">
+      Responde las {{ total() }} preguntas. Solo hay una respuesta correcta en cada una.
+      ¿Prefieres repasar antes? <a [routerLink]="['/cursos', slug(), 'temario']">Vuelve al temario</a>.
+    </p>
+
+    <ol class="preguntas">
+      @for (p of i.preguntas; track p.id; let n = $index) {
+        <li class="tarjeta" [class.respondida]="respuestas()[p.id] !== undefined">
+          <fieldset>
+            <legend><span class="num">{{ n + 1 }}.</span> {{ p.enunciado }}</legend>
+            @for (op of p.opciones; track $index; let k = $index) {
+              <label class="opcion">
+                <input
+                  type="radio"
+                  [name]="'p' + p.id"
+                  [value]="k"
+                  [checked]="respuestas()[p.id] === k"
+                  (change)="elegir(p.id, k)"
+                />
+                <span>{{ op }}</span>
+              </label>
+            }
+          </fieldset>
+        </li>
+      }
+    </ol>
+
+    <div class="barra">
+      <div class="contenedor barra-interior">
+        <span><strong>{{ respondidas() }} de {{ total() }}</strong> respondidas</span>
+        @if (!confirmando()) {
+          <button id="entregar" class="boton" type="button" [disabled]="!completo()" (click)="pedirConfirmacion()">
+            Entregar examen
+          </button>
+        } @else {
+          <span class="confirmar">
+            ¿Entregar? No podrás cambiar las respuestas.
+            <button class="boton secundario" type="button" (click)="confirmando.set(false)">Revisar</button>
+            <button id="confirmar" class="boton" type="button" [disabled]="enviando()" (click)="entregar()">
+              Sí, entregar
+            </button>
+          </span>
+        }
+      </div>
+    </div>
+  } @else if (!error()) {
+    <p class="cargando">Preparando tu examen…</p>
+  }
+</div>

@@ -1,0 +1,148 @@
+<section class="portada">
+  <div class="contenedor portada-dentro">
+    <div class="portada-texto">
+      <p class="etiqueta">Formación profesional online</p>
+      <h1>Fórmate online y consigue tu diploma en pocas horas</h1>
+      <p class="subtitulo">
+        Estudia el temario a tu ritmo, haz el examen tipo test y descarga tu diploma con código de verificación al aprobar.
+      </p>
+      <div class="portada-botones">
+        <a class="boton cta" routerLink="/cursos/manipulador-alimentos">Quiero mi curso</a>
+        <a class="boton claro" routerLink="/" fragment="cursos">Ver todos los cursos</a>
+      </div>
+    </div>
+    <p class="sello-redondo" aria-hidden="true"><span>100 %<br />online</span></p>
+  </div>
+</section>
+
+<section class="destacado" aria-labelledby="t-destacado">
+  <div class="contenedor destacado-dentro">
+    <img
+      class="destacado-img"
+      src="img/destacado-manipulador.jpg"
+      alt="Manipulador con guantes cortando carne sobre una tabla"
+      width="1124"
+      height="632"
+      loading="lazy"
+    />
+    <div class="destacado-texto">
+      <h2 id="t-destacado">Curso de Manipulador de Alimentos</h2>
+      <p>
+        Fórmate online de forma rápida y económica: estudia el temario a tu ritmo, haz el examen y
+        descarga tu diploma al aprobar.
+      </p>
+      <a class="boton cta" routerLink="/cursos/manipulador-alimentos">Quiero mi curso</a>
+    </div>
+  </div>
+</section>
+
+<section class="seccion" aria-labelledby="t-ventajas">
+  <div class="contenedor">
+    <h2 class="titulo-seccion" id="t-ventajas">Por qué formarte con nosotros</h2>
+    <p class="subtitulo-seccion">Cursos pensados para que aprendas lo que necesitas sin complicaciones.</p>
+    <ul class="ventajas">
+      <li>
+        <span class="icono" aria-hidden="true">&#9201;</span>
+        <h3>A tu ritmo</h3>
+        <p>Sin horarios: entra cuando quieras, desde el móvil o el ordenador.</p>
+      </li>
+      <li>
+        <span class="icono" aria-hidden="true">&#127891;</span>
+        <h3>Diploma al momento</h3>
+        <p>Al aprobar lo descargas en PDF, con un código para verificarlo.</p>
+      </li>
+      <li>
+        <span class="icono" aria-hidden="true">&#128216;</span>
+        <h3>Normativa vigente</h3>
+        <p>Contenidos revisados y adaptados a la normativa actual.</p>
+      </li>
+      <li>
+        <span class="icono" aria-hidden="true">&#128172;</span>
+        <h3>Te ayudamos</h3>
+        <p>Si tienes dudas sobre el curso o el diploma, escríbenos.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="seccion gris" id="cursos" aria-labelledby="t-cursos">
+  <div class="contenedor">
+    <h2 class="titulo-seccion" id="t-cursos">Nuestros cursos</h2>
+    <p class="subtitulo-seccion">Elige tu curso, estudia el temario y consigue tu diploma.</p>
+    @if (catalogo(); as cursos) {
+      @if (cursos.length) {
+        <ul class="rejilla">
+          @for (c of cursos; track c.slug) {
+            <li><app-tarjeta-curso [curso]="c" /></li>
+          }
+        </ul>
+      } @else {
+        <p class="vacio">Muy pronto nuevos cursos.</p>
+      }
+    } @else if (catalogo() === null) {
+      <p class="aviso error">No se han podido cargar los cursos. Inténtalo de nuevo en unos minutos.</p>
+    } @else {
+      <p class="cargando">Cargando cursos…</p>
+    }
+  </div>
+</section>
+
+<section class="seccion" id="como-funciona" aria-labelledby="t-como">
+  <div class="contenedor">
+    <h2 class="titulo-seccion" id="t-como">Cómo funciona</h2>
+    <p class="subtitulo-seccion">Tres pasos, sin registro previo.</p>
+    <ol class="pasos">
+      <li class="tarjeta">
+        <span class="paso-num">1</span>
+        <h3>Estudia</h3>
+        <p class="suave">Lee el temario del curso gratis, tantas veces como quieras.</p>
+      </li>
+      <li class="tarjeta">
+        <span class="paso-num">2</span>
+        <h3>Haz el examen</h3>
+        <p class="suave">Preguntas tipo test. Si no apruebas, puedes repetirlo.</p>
+      </li>
+      <li class="tarjeta">
+        <span class="paso-num">3</span>
+        <h3>Descarga tu diploma</h3>
+        <p class="suave">Al aprobar, pagas el diploma y lo descargas al momento.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="seccion crema" aria-labelledby="t-opiniones">
+  <div class="contenedor centrado">
+    <h2 class="titulo-seccion" id="t-opiniones">Lo que opinan nuestros alumnos</h2>
+    <p class="estrellas" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+    @if (empresa.urlOpinionesGoogle) {
+      <p>Consulta las valoraciones de quienes ya se han formado con nosotros.</p>
+      <a class="boton cta" [href]="empresa.urlOpinionesGoogle" target="_blank" rel="noopener">Ver opiniones en Google</a>
+    } @else {
+      <p>Muy pronto podrás consultar aquí las opiniones de nuestros alumnos.</p>
+    }
+  </div>
+</section>
+
+<section class="seccion" aria-labelledby="t-quienes">
+  <div class="contenedor centrado">
+    <h2 class="titulo-seccion" id="t-quienes">Quiénes somos</h2>
+    <p>{{ empresa.quienesSomos }}</p>
+  </div>
+</section>
+
+<section class="seccion contacto" id="contacto" aria-labelledby="t-contacto">
+  <div class="contenedor">
+    <h2 class="titulo-seccion" id="t-contacto">Contacto</h2>
+    <p class="subtitulo-seccion">¿Tienes alguna duda? Estamos para ayudarte.</p>
+    <ul class="datos-contacto">
+      <li><span>Teléfono</span><strong>{{ empresa.telefono }}</strong></li>
+      <li><span>Email</span><strong>{{ empresa.email }}</strong></li>
+    </ul>
+    @if (urlWhatsapp) {
+      <div class="acciones centro">
+        <a class="boton cta" [href]="urlWhatsapp" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+      </div>
+    }
+  </div>
+</section>

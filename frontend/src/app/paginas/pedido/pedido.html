@@ -1,0 +1,49 @@
+<div class="contenedor pagina">
+  <div class="tarjeta caja">
+    @switch (vista()) {
+      @case ('EMITIDO') {
+        @if (datos(); as p) {
+          <p class="icono" aria-hidden="true">🎓</p>
+          <h1>¡Tu diploma está listo!</h1>
+          <p class="suave">Código de verificación:</p>
+          <p class="codigo">{{ p.codigoDiploma }}</p>
+          <p class="suave">Guárdalo: cualquiera puede comprobar tu diploma con él en la página de verificación.</p>
+          <div class="acciones centro">
+            <a class="boton descargar" [href]="urlDescarga(p)" download>Descargar diploma (PDF)</a>
+            <a class="boton secundario" [routerLink]="['/verificar', p.codigoDiploma]">Ver verificación</a>
+          </div>
+        }
+      }
+      @case ('PAGADO') {
+        <p class="icono" aria-hidden="true">⏳</p>
+        <h1>Pago recibido</h1>
+        <p class="suave">Estamos preparando tu diploma. Esta página se actualizará sola.</p>
+        <div class="acciones centro"><button class="boton secundario" type="button" (click)="recargar()">Comprobar de nuevo</button></div>
+      }
+      @case ('PENDIENTE_PAGO') {
+        <h1>Pago pendiente</h1>
+        <p class="aviso">
+          <strong>Si ya has pagado, no vuelvas a pagar.</strong> La confirmación puede tardar unos minutos;
+          esta página se actualiza sola.
+        </p>
+        <div class="acciones centro">
+          <button class="boton" type="button" (click)="recargar()">Comprobar de nuevo</button>
+          <a class="boton secundario pagar" [routerLink]="['/pedido', pedidoId(), 'datos']">Aún no he pagado: ir a pagar</a>
+        </div>
+      }
+      @case ('CANCELADO') {
+        <h1>Pedido cancelado</h1>
+        <p class="suave">Este pedido se sustituyó por otro más reciente.</p>
+        <div class="acciones centro"><a class="boton" routerLink="/">Volver al inicio</a></div>
+      }
+      @case ('ERROR') {
+        <h1>No encontramos tu pedido</h1>
+        <p class="suave">Comprueba el enlace o vuelve al inicio.</p>
+        <div class="acciones centro"><a class="boton" routerLink="/">Volver al inicio</a></div>
+      }
+      @default {
+        <p class="cargando">Consultando tu pedido…</p>
+      }
+    }
+  </div>
+</div>

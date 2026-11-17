@@ -1,0 +1,14 @@
+# Perfil de desarrollo y demo: base de datos H2 en fichero y pago SIMULADO (no cobra nada).
+# Nunca usar en produccion.
+spring:
+  datasource:
+    url: jdbc:h2:file:./data/cursos;AUTO_SERVER=TRUE
+    username: sa
+    password: ""
+
+app:
+  pagos:
+    proveedor: simulado
+  admin:
+    usuario: admin
+    password: admin

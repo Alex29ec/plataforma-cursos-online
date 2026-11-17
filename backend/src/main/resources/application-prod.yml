@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+
+# Detrás de un proxy inverso del mismo origen y solo HTTPS (ver "Despliegue" en el README).
+# "native": Tomcat (RemoteIpValve) toma la IP del cliente de X-Forwarded-For y el esquema de
+# X-Forwarded-Proto, pero solo si el proxy está en un rango interno (10/8, 192.168/16, 172.16/12, 127/8...).
+server:
+  forward-headers-strategy: native
+  servlet:
+    session:
+      cookie:
+        secure: true
+
+app:
+  frontend-url: ${FRONTEND_URL}
+  pagos:
+    proveedor: stripe

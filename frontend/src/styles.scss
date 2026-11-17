@@ -1,0 +1,307 @@
+:root {
+  /* Marca (Aula Online) */
+  --marino: #0f1b2d;
+  --marino-claro: #1b2c45;
+  --turquesa: #16938f;
+  --crema: #fdf3e7;
+  --arena: #d39a72;
+  --arena-oscura: #c4865c;
+
+  /* Usos */
+  --color-fondo: #ffffff;
+  --color-superficie: #ffffff;
+  --color-texto: #1a2433;
+  --color-suave: #556070;
+  --color-borde: #e3e6ea;
+  /* Turquesa algo más oscuro para texto y botones sobre blanco (contraste AA con texto blanco). */
+  --color-primario: #0e7c78;
+  --color-primario-oscuro: #0a5f5c;
+  --color-primario-claro: #e3f3f2;
+  --color-acento: var(--arena-oscura);
+  --color-ok: #15803d;
+  --color-ok-claro: #e6f4ea;
+  --color-error: #b91c1c;
+  --color-error-claro: #fdecec;
+  --color-aviso-claro: var(--crema);
+  --radio: 12px;
+  --sombra: 0 1px 2px rgb(15 27 45 / 0.05), 0 6px 20px rgb(15 27 45 / 0.07);
+  --ancho: 1120px;
+  font-family: 'Lexend', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-fondo);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0 0 0.6em;
+  font-weight: 600;
+  color: var(--marino);
+}
+
+a {
+  color: var(--color-primario);
+}
+
+.contenedor {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.tarjeta {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 24px;
+}
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: var(--color-primario);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover {
+    background: var(--color-primario-oscuro);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.secundario {
+    background: transparent;
+    color: var(--color-primario);
+    border-color: var(--color-primario);
+
+    &:hover {
+      background: var(--color-primario-claro);
+    }
+  }
+
+  /* Llamada a la acción: arena con texto marino (contraste suficiente). */
+  &.cta {
+    background: var(--arena);
+    color: var(--marino);
+
+    &:hover {
+      background: var(--arena-oscura);
+    }
+  }
+
+  /* Sobre fondo oscuro. */
+  &.claro {
+    background: transparent;
+    color: #fff;
+    border-color: rgb(255 255 255 / 0.7);
+
+    &:hover {
+      background: rgb(255 255 255 / 0.12);
+    }
+  }
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.aviso {
+  border-radius: var(--radio);
+  padding: 14px 16px;
+  background: var(--color-aviso-claro);
+  border: 1px solid #f0d9bd;
+
+  &.ok {
+    background: var(--color-ok-claro);
+    border-color: #b7dfc3;
+  }
+
+  &.error {
+    background: var(--color-error-claro);
+    border-color: #f2c1c1;
+  }
+}
+
+.suave {
+  color: var(--color-suave);
+}
+
+.cargando {
+  color: var(--color-suave);
+  padding: 40px 0;
+  text-align: center;
+}
+
+/* Solo arriba y abajo: con .contenedor (padding lateral de 16px) no debe pisar los márgenes laterales. */
+.pagina {
+  padding-top: 32px;
+  padding-bottom: 56px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+
+  label {
+    font-weight: 600;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  input[type='number'],
+  input[type='search'],
+  input[type='file'],
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+    background: var(--color-superficie);
+    padding: 10px 12px;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+
+    &:focus {
+      outline: 2px solid var(--color-primario);
+      outline-offset: 1px;
+    }
+  }
+
+  /* Controles de una línea: altura táctil mínima. */
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  input[type='number'],
+  input[type='search'],
+  input[type='file'],
+  select {
+    min-height: 44px;
+  }
+
+  textarea {
+    line-height: 1.5;
+    resize: vertical;
+  }
+
+  .error-campo {
+    color: var(--color-error);
+    font-size: 0.9em;
+  }
+}
+
+/* Bloques compartidos por la portada y la página de curso. */
+.seccion {
+  padding: 56px 0;
+
+  &.crema {
+    background: var(--crema);
+  }
+}
+
+.titulo-seccion {
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.subtitulo-seccion {
+  text-align: center;
+  color: var(--color-suave);
+  max-width: 60ch;
+  margin: 0 auto 32px;
+}
+
+.sello-redondo {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background: var(--turquesa);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.15;
+  box-shadow: 0 0 0 6px rgb(22 147 143 / 0.3);
+  margin: 0;
+  flex: none;
+}
+
+.pasos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+
+  h3 {
+    margin-top: 12px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.paso-num {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--turquesa);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Oculto a la vista, visible para lectores de pantalla y buscadores. */
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

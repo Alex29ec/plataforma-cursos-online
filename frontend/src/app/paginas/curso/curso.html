@@ -1,0 +1,89 @@
+@if (curso(); as c) {
+  @if (c === 'error') {
+    <div class="contenedor pagina">
+      <div class="aviso error">
+        Este curso no está disponible.
+        <a routerLink="/" fragment="cursos">Ver todos los cursos</a>
+      </div>
+    </div>
+  } @else {
+    <section class="hero">
+      @if (c.imagenUrl) {
+        <img class="hero-foto" [src]="c.imagenUrl" [alt]="'Imagen del curso ' + c.titulo" />
+        <div class="velo"></div>
+      }
+      <div class="contenedor hero-dentro">
+        @if (pedidoGuardado) {
+          <div class="aviso ok recordatorio">
+            Tienes un pedido de diploma en este navegador.
+            <a [routerLink]="['/pedido', pedidoGuardado]">Ver mi diploma</a>
+          </div>
+        } @else if (intentoGuardado) {
+          <div class="aviso recordatorio">
+            Ya aprobaste un examen.
+            <a [routerLink]="['/intento', intentoGuardado, 'datos']">Obtener mi diploma</a>
+          </div>
+        }
+        <p class="etiqueta">Curso online · Diploma al aprobar</p>
+        <h1>{{ c.titulo }}</h1>
+        <p class="descripcion">{{ c.resumen || c.descripcion }}</p>
+        <div class="acciones">
+          <a class="boton cta" [routerLink]="['/cursos', c.slug, 'temario']">Empezar el curso</a>
+          <a class="boton claro" [routerLink]="['/cursos', c.slug, 'examen']">Hacer el examen</a>
+        </div>
+        <ul class="datos">
+          <li><strong>{{ c.horas }} h</strong><span>de formación</span></li>
+          <li><strong>{{ c.numPreguntas }}</strong><span>preguntas tipo test</span></li>
+          <li><strong>{{ c.notaMinima }} %</strong><span>para aprobar</span></li>
+          <li><strong>{{ precio(c.precioCentimos) }}</strong><span>el diploma</span></li>
+        </ul>
+      </div>
+    </section>
+
+    @if (c.resumen && c.descripcion) {
+      <section class="contenedor bloque">
+        <h2>Sobre el curso</h2>
+        <p class="texto-largo">{{ c.descripcion }}</p>
+      </section>
+    }
+
+    <section class="contenedor bloque">
+      <h2>Cómo funciona</h2>
+      <ol class="pasos">
+        <li class="tarjeta">
+          <span class="paso-num">1</span>
+          <h3>Estudia gratis</h3>
+          <p class="suave">Lee todos los temas a tu ritmo, sin registrarte.</p>
+        </li>
+        <li class="tarjeta">
+          <span class="paso-num">2</span>
+          <h3>Haz el examen</h3>
+          <p class="suave">{{ c.numPreguntas }} preguntas. Puedes repetirlo las veces que necesites.</p>
+        </li>
+        <li class="tarjeta">
+          <span class="paso-num">3</span>
+          <h3>Obtén tu diploma</h3>
+          <p class="suave">Si apruebas, pagas {{ precio(c.precioCentimos) }} y descargas tu diploma con código de verificación.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="contenedor bloque">
+      <h2>Temario</h2>
+      <ol class="temario tarjeta">
+        @for (t of c.temas; track t.orden) {
+          <li>
+            <a [routerLink]="['/cursos', c.slug, 'tema', t.orden]">
+              <span class="num-tema">{{ t.orden }}</span>{{ t.titulo }}
+            </a>
+          </li>
+        }
+      </ol>
+      <div class="acciones centro">
+        <a class="boton cta" [routerLink]="['/cursos', c.slug, 'examen']">Hacer el examen</a>
+      </div>
+    </section>
+  }
+} @else {
+  <p class="cargando">Cargando el curso…</p>
+}
